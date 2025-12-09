@@ -221,6 +221,7 @@ def compute_results(luas, jumlah_awal, sisa_hidup, df_dataset=None):
 
     # Cari kandang paling mirip
     df["selisih"] = (df["Kepadatan"] - kepadatan).abs()
+    df["selisih"] = pd.to_numeric(df["selisih"], errors="coerce")
     top_similar = df.nsmallest(5, "selisih")[["No", "Kandang", "Kepadatan", "Deplesi_pct"]].reset_index(drop=True)
 
     return {
